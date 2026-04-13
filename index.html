@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Synthetix Agency | Precision Web & App Development</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&family=Prompt:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0071e3",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#e8f2fc",
+                        "on-primary-container": "#002142",
+                        "primary-fixed": "#78b5ff",
+                        "on-primary-fixed": "#001b36",
+                        "secondary": "#5e5e62",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#e3e3e8",
+                        "on-secondary-container": "#1c1c1f",
+                        "tertiary": "#14b8a6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#ccfbf1",
+                        "on-tertiary-container": "#042f2e",
+                        "surface": "#fbfbfd",
+                        "surface-dim": "#f5f5f7",
+                        "surface-bright": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#fbfbfd",
+                        "surface-container": "#f5f5f7",
+                        "surface-container-high": "#eaeaeb",
+                        "surface-container-highest": "#e3e3e8",
+                        "on-surface": "#1d1d1f",
+                        "on-surface-variant": "#86868b",
+                        "outline": "#d2d2d7",
+                        "outline-variant": "#eaeaeb",
+                        "background": "#fbfbfd",
+                        "on-background": "#1d1d1f",
+                        "error": "#ff3b30",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffe5e5",
+                        "on-error-container": "#4d0000"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope", "Prompt", "sans-serif"],
+                        "body": ["Inter", "Prompt", "sans-serif"],
+                        "label": ["Inter", "Prompt", "sans-serif"]
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbfbfd;
+            color: #1d1d1f;
+            overflow-x: hidden;
+        }
+        .text-glow { 
+            text-shadow: 0 0 25px rgba(0, 113, 227, 0.2); 
+        }
+        .logo-glow {
+            filter: drop-shadow(0 0 10px rgba(0, 113, 227, 0.15));
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbfbfd; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d2d2d7; 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #86868b; 
+        }
+
+        /* Glassmorphism utility */
+        .glass {
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(210, 210, 215, 0.5);
+        }
+    </style>
+</head>
+<body class="selection:bg-primary-container selection:text-on-primary-container font-body antialiased">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-4 glass">
+        <div class="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 z-50 group">
+                <img src="https://kvdc-vetku.com/wp-content/uploads/2026/04/โลโก้-Synthetix-scaled.png" 
+                     alt="Synthetix Logo" 
+                     class="h-10 md:h-12 w-auto object-contain logo-glow group-hover:scale-105 transition-transform duration-300">
+                <span class="text-xl font-black text-on-surface font-headline tracking-tight hidden sm:block">Synthetix</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-headline font-semibold tracking-wide text-sm uppercase" href="#services">บริการ</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-headline font-semibold tracking-wide text-sm uppercase" href="#portfolio">ผลงาน</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-headline font-semibold tracking-wide text-sm uppercase" href="#process">กระบวนการ</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-headline font-semibold tracking-wide text-sm uppercase" href="#about">เกี่ยวกับเรา</a>
+                <a href="#contact" class="bg-gradient-to-r from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg font-bold hover:shadow-[0_0_20px_rgba(0,218,243,0.3)] hover:-translate-y-0.5 transition-all duration-300 active:scale-95 text-sm uppercase tracking-wide">
+                    ติดต่อเรา
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-on-surface z-50 p-2 focus:outline-none">
+                <span class="material-symbols-outlined text-3xl transition-transform duration-300" id="menu-icon">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-surface/95 backdrop-blur-xl flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300 z-40">
+            <a class="mobile-link text-2xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#services">บริการ (Services)</a>
+            <a class="mobile-link text-2xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#portfolio">ผลงาน (Portfolio)</a>
+            <a class="mobile-link text-2xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#process">กระบวนการ (Process)</a>
+            <a class="mobile-link text-2xl font-headline font-bold text-on-surface hover:text-primary transition-colors" href="#about">เกี่ยวกับเรา (About)</a>
+            <a href="#contact" class="mobile-link mt-4 bg-primary text-on-primary-container px-8 py-4 rounded-xl font-bold text-lg w-[80%] text-center shadow-[0_0_20px_rgba(0,218,243,0.2)]">
+                ติดต่อเรา
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center px-6 md:px-12 max-w-7xl mx-auto relative pt-24 pb-12" id="home">
+            <!-- Background Decorative Elements -->
+            <div class="absolute top-1/4 left-0 w-72 h-72 bg-primary/10 rounded-full mix-blend-multiply filter blur-[100px] animate-blob"></div>
+            <div class="absolute top-1/3 right-0 w-72 h-72 bg-tertiary/10 rounded-full mix-blend-multiply filter blur-[100px] animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-32 left-1/2 w-96 h-96 bg-primary-container/30 rounded-full mix-blend-multiply filter blur-[120px] animate-blob animation-delay-4000"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10 w-full">
+                <div class="lg:col-span-7 flex flex-col justify-center animate-fade-in-up">
+                    <div class="inline-flex items-center gap-2 mb-6 bg-surface-container-high/50 border border-outline-variant/30 px-4 py-2 rounded-full w-max backdrop-blur-sm">
+                        <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+                        <span class="text-tertiary font-label uppercase tracking-widest text-xs font-semibold">พาร์ทเนอร์ออนไลน์ของร้านคุณ</span>
+                    </div>
+                    
+                    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-headline font-extrabold text-on-surface leading-[1.05] tracking-tight mb-8">
+                        สร้างเว็บไซต์ให้ธุรกิจคุณ <br />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-fixed to-tertiary text-glow inline-block pb-2">
+                            เติบโต
+                        </span> <br />
+                        ในราคาที่จับต้องได้
+                    </h1>
+                    
+                    <p class="text-on-surface-variant text-lg md:text-xl max-w-xl mb-10 leading-relaxed font-light">
+                        เริ่มต้นง่าย ดูแลใกล้ชิด ไม่ต้องรู้เรื่องโค้ดก็มีเว็บสวยได้
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="text-center bg-primary hover:bg-primary-fixed text-on-primary-container px-8 py-4 rounded-xl font-bold hover:shadow-[0_0_30px_rgba(0,218,243,0.4)] hover:-translate-y-1 transition-all duration-300">
+                            เริ่มต้นโปรเจกต์
+                        </a>
+                        <a href="#portfolio" class="text-center group border border-outline-variant hover:border-primary/50 px-8 py-4 rounded-xl font-bold hover:bg-surface-container-high transition-all duration-300 flex items-center justify-center gap-2">
+                            ดูพิมพ์เขียวผลงาน
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-5 relative mt-10 lg:mt-0 opacity-0 animate-[fadeInUp_0.8s_ease-out_0.3s_forwards]">
+                    <div class="aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-outline-variant/50 relative group">
+                        <img alt="Tech Architecture" 
+                             class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700 mix-blend-luminosity hover:mix-blend-normal" 
+                             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent"></div>
+                        
+                        <!-- Floating Tech Element -->
+                        <div class="absolute bottom-6 left-6 right-6 glass p-4 rounded-xl border border-outline-variant/50 flex items-center gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">code_blocks</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-on-surface">Robust Architecture</p>
+                                <p class="text-xs text-on-surface-variant">Scalable & Secure Systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section: Bento Grid -->
+        <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-lowest border-y border-outline-variant/10" id="services">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-6">
+                    <div>
+                        <span class="text-tertiary font-label uppercase tracking-[0.2em] text-sm mb-4 block font-semibold flex items-center gap-2">
+                            <span class="w-8 h-[1px] bg-tertiary block"></span> Our Capabilities
+                        </span>
+                        <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface leading-tight">
+                            บริการด้าน <br class="hidden md:block"/><span class="text-primary text-glow">สถาปัตยกรรมดิจิทัล</span>
+                        </h2>
+                    </div>
+                    <p class="max-w-md text-on-surface-variant text-lg leading-relaxed">
+                        ขั้นตอนการทำงานที่ออกแบบมาโดยเฉพาะสำหรับการขยายตัวขององค์กรและสตาร์ทอัพที่เติบโตเร็ว
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(300px,auto)]">
+                    <!-- Web Design -->
+                    <div class="bg-surface-container-high border border-outline-variant/10 p-8 md:p-10 rounded-2xl hover:bg-surface-container-highest hover:border-primary/30 transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1">
+                        <div>
+                            <div class="w-16 h-16 rounded-2xl bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-primary/10 transition-colors">
+                                <span class="material-symbols-outlined text-primary text-3xl" data-icon="devices">devices</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold mb-4">ออกแบบเว็บไซต์</h3>
+                            <p class="text-on-surface-variant leading-relaxed">หน้าตาเว็บสวย ทันสมัย รองรับมือถือ 100%</p>
+                        </div>
+                        <a class="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-4 transition-all mt-8 w-max uppercase text-sm tracking-wide" href="#contact">
+                            ขอรับบริการ <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <!-- Backend / Stock -->
+                    <div class="md:col-span-2 bg-surface-container border border-outline-variant/10 p-8 md:p-10 rounded-2xl relative overflow-hidden group hover:border-tertiary/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="relative z-10 flex flex-col h-full justify-between w-full md:w-2/3">
+                            <div>
+                                <div class="w-16 h-16 rounded-2xl bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-tertiary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-tertiary text-3xl" data-icon="inventory_2">inventory_2</span>
+                                </div>
+                                <h3 class="text-3xl font-headline font-bold mb-4">ระบบจัดการสต็อก / หลังบ้าน</h3>
+                                <p class="text-on-surface-variant leading-relaxed text-lg">
+                                    ระบบจัดการหลังบ้าน ช่วยลดงานเอกสารที่วุ่นวาย จัดการข้อมูลและสต็อกสินค้าได้ง่ายๆ ในที่เดียว
+                                </p>
+                            </div>
+                            <a class="text-tertiary font-bold inline-flex items-center gap-2 group-hover:gap-4 transition-all mt-8 w-max uppercase text-sm tracking-wide" href="#contact">
+                                ขอรับบริการ <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div class="absolute right-0 bottom-0 h-[120%] w-1/2 opacity-10 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none translate-y-10 group-hover:translate-y-0">
+                            <img alt="Dashboard Backend" class="object-cover h-full w-full mask-image-gradient" 
+                                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" style="-webkit-mask-image: linear-gradient(to right, transparent, black); mask-image: linear-gradient(to right, transparent, black);" />
+                        </div>
+                    </div>
+
+                    <!-- Booking / Registration -->
+                    <div class="md:col-span-2 bg-gradient-to-br from-surface-container to-surface-container-low border border-outline-variant/10 p-8 md:p-10 rounded-2xl relative overflow-hidden group hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
+                        <div class="relative z-10 flex flex-col h-full justify-between w-full md:w-2/3">
+                            <div>
+                                <div class="w-16 h-16 rounded-2xl bg-surface-container-highest flex items-center justify-center mb-8 group-hover:bg-primary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-primary text-3xl" data-icon="event_available">event_available</span>
+                                </div>
+                                <h3 class="text-3xl font-headline font-bold mb-4">ระบบจองคิว / ลงทะเบียน</h3>
+                                <p class="text-on-surface-variant leading-relaxed text-lg">
+                                    ระบบจองคิว/ลงทะเบียนออนไลน์ ใช้ง่ายผ่าน Line อำนวยความสะดวกให้ลูกค้า และช่วยให้ร้านจัดสรรเวลาได้ดีขึ้น
+                                </p>
+                            </div>
+                            <a class="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-4 transition-all mt-8 w-max uppercase text-sm tracking-wide" href="#contact">
+                                ขอรับบริการ <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- IT Strategy / Consulting -->
+                    <div class="bg-surface-container-high border border-outline-variant/10 p-8 md:p-10 rounded-2xl hover:bg-surface-container-highest hover:border-secondary/30 transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1">
+                        <div>
+                            <div class="w-16 h-16 rounded-2xl bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary/10 transition-colors">
+                                <span class="material-symbols-outlined text-secondary text-3xl" data-icon="lightbulb">lightbulb</span>
+                            </div>
+                            <h3 class="text-2xl font-headline font-bold mb-4">ให้คำปรึกษาไอที</h3>
+                            <p class="text-on-surface-variant leading-relaxed">แนะนำเครื่องมือและระบบที่เหมาะสมกับงบประมาณ เพื่อลดต้นทุนและเพิ่มยอดขายให้ร้านคุณ</p>
+                        </div>
+                        <a class="text-secondary font-bold inline-flex items-center gap-2 group-hover:gap-4 transition-all mt-8 w-max uppercase text-sm tracking-wide" href="#contact">
+                            ขอรับบริการ <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-dim border-t border-outline-variant/10" id="why-us">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 md:mb-24">
+                    <span class="text-tertiary font-label uppercase tracking-[0.2em] text-sm mb-4 block font-semibold justify-center flex items-center gap-2">
+                        <span class="w-8 h-[1px] bg-tertiary block"></span> Why Choose Us <span class="w-8 h-[1px] bg-tertiary block"></span>
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface">ทำไมธุรกิจขนาดเล็กถึง<span class="text-primary text-glow">เลือกเรา?</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Point 1 -->
+                    <div class="bg-surface-container-lowest border border-outline-variant/50 p-10 rounded-[2rem] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-500 text-center flex flex-col items-center group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors group-hover:scale-110 duration-500">
+                            <span class="material-symbols-outlined text-primary text-4xl" data-icon="forum">forum</span>
+                        </div>
+                        <h3 class="text-2xl font-headline font-bold mb-4 text-on-surface">คุยง่าย</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-lg">พูดภาษาเดียวกับคุณ ไม่ใช้ศัพท์เทคนิคที่เข้าใจยาก ให้คุณสบายใจในการสื่อสารทุกขั้นตอน</p>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div class="bg-surface-container-lowest border border-outline-variant/50 p-10 rounded-[2rem] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-500 text-center flex flex-col items-center group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-tertiary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="w-20 h-20 rounded-full bg-tertiary/10 flex items-center justify-center mb-6 group-hover:bg-tertiary/20 transition-colors group-hover:scale-110 duration-500">
+                            <span class="material-symbols-outlined text-tertiary text-4xl" data-icon="bolt">bolt</span>
+                        </div>
+                        <h3 class="text-2xl font-headline font-bold mb-4 text-on-surface">รวดเร็ว</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-lg">พร้อมใช้งานภายใน 3-7 วัน เราเข้าใจดีว่าเวลาคือต้นทุนสำคัญ ช่วยให้ธุรกิจคุณเดินหน้าได้ไวที่สุด</p>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div class="bg-surface-container-lowest border border-outline-variant/50 p-10 rounded-[2rem] hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-500 text-center flex flex-col items-center group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="w-20 h-20 rounded-full bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors group-hover:scale-110 duration-500">
+                            <span class="material-symbols-outlined text-secondary text-4xl" data-icon="support_agent">support_agent</span>
+                        </div>
+                        <h3 class="text-2xl font-headline font-bold mb-4 text-on-surface">ดูแลต่อเนื่อง</h3>
+                        <p class="text-on-surface-variant leading-relaxed text-lg">มีปัญหาทักแชทหาคนทำได้โดยตรง ไม่ต้องผ่านระบบ Call Center ที่ซับซ้อน และเราไม่ทิ้งงาน</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="py-24 md:py-32 px-6 md:px-12 bg-surface relative" id="portfolio">
+            <!-- Decorative line -->
+            <div class="absolute left-0 top-0 w-[1px] h-full bg-gradient-to-b from-primary/0 via-primary/20 to-primary/0 hidden xl:block ml-12"></div>
+
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                    <div>
+                        <span class="text-tertiary font-label uppercase tracking-[0.2em] text-sm mb-4 block font-semibold flex items-center gap-2">
+                            <span class="w-8 h-[1px] bg-tertiary block"></span> Case Studies
+                        </span>
+                        <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface"><span class="text-primary text-glow">ผลงาน</span> ของเรา</h2>
+                    </div>
+                    
+                    <div class="flex gap-3 flex-wrap">
+                        <button class="bg-primary text-on-primary-container px-5 py-2 rounded-lg text-sm font-bold shadow-[0_0_15px_rgba(0,218,243,0.3)]">All</button>
+                        <button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-lg text-sm font-bold hover:bg-surface-container-highest hover:text-on-surface transition-colors">Web</button>
+                        <button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-lg text-sm font-bold hover:bg-surface-container-highest hover:text-on-surface transition-colors">Mobile</button>
+                        <button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-lg text-sm font-bold hover:bg-surface-container-highest hover:text-on-surface transition-colors">Enterprise</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
+                    <!-- Portfolio Item 1 -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-[4/3] bg-surface-container-low rounded-2xl overflow-hidden mb-6 relative border border-outline-variant/20 group-hover:border-primary/50 transition-colors duration-500">
+                            <img alt="Dashboard UI" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" 
+                                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" />
+                            
+                            <!-- Overlay -->
+                            <div class="absolute inset-0 bg-surface/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                                <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <span class="bg-primary text-on-primary-container px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                                        <span class="material-symbols-outlined">visibility</span> ดูรายละเอียด
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start px-2">
+                            <div>
+                                <h3 class="text-2xl font-headline font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Quantos Analytics</h3>
+                                <div class="flex gap-2">
+                                    <span class="text-xs font-label text-tertiary px-3 py-1 bg-tertiary/10 border border-tertiary/20 rounded-full">Enterprise</span>
+                                    <span class="text-xs font-label text-primary px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">Web App</span>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary-container transition-colors">
+                                <span class="material-symbols-outlined">north_east</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Item 2 -->
+                    <div class="group cursor-pointer md:mt-24">
+                        <div class="aspect-[4/3] bg-surface-container-low rounded-2xl overflow-hidden mb-6 relative border border-outline-variant/20 group-hover:border-tertiary/50 transition-colors duration-500">
+                            <img alt="Mobile App UI" class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 object-top" 
+                                 src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?q=80&w=2070&auto=format&fit=crop" />
+                            
+                            <!-- Overlay -->
+                            <div class="absolute inset-0 bg-surface/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                                <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <span class="bg-tertiary text-on-primary-container px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                                        <span class="material-symbols-outlined">visibility</span> ดูรายละเอียด
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start px-2">
+                            <div>
+                                <h3 class="text-2xl font-headline font-bold mb-3 text-on-surface group-hover:text-tertiary transition-colors">Lumina Estate App</h3>
+                                <div class="flex gap-2">
+                                    <span class="text-xs font-label text-tertiary px-3 py-1 bg-tertiary/10 border border-tertiary/20 rounded-full">Real Estate</span>
+                                    <span class="text-xs font-label text-primary px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">Mobile</span>
+                                </div>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-tertiary group-hover:text-on-primary-container transition-colors">
+                                <span class="material-symbols-outlined">north_east</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-lowest border-y border-outline-variant/10" id="process">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 md:mb-32">
+                    <span class="text-tertiary font-label uppercase tracking-[0.2em] text-sm mb-4 block font-semibold justify-center flex items-center gap-2">
+                        <span class="w-8 h-[1px] bg-tertiary block"></span> The Blueprint <span class="w-8 h-[1px] bg-tertiary block"></span>
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface">ขั้นตอน <span class="text-primary text-glow">การทำงาน</span></h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+                    <!-- Step 1 -->
+                    <div class="relative group px-4">
+                        <div class="text-[8rem] font-black text-outline-variant/50 absolute -top-16 -left-4 group-hover:text-primary/10 transition-colors duration-500 select-none z-0">01</div>
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-headline font-bold mb-3 text-on-surface">Requirement & Discovery</h4>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">วิเคราะห์ความต้องการ กำหนดกลุ่มเป้าหมาย และสำรวจข้อจำกัดทางเทคนิคอย่างละเอียด</p>
+                        </div>
+                        <div class="h-[2px] w-full bg-outline-variant/50 relative overflow-hidden rounded-full mt-auto">
+                            <div class="h-full w-0 bg-gradient-to-r from-primary to-tertiary group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative group px-4 md:mt-12">
+                        <div class="text-[8rem] font-black text-outline-variant/50 absolute -top-16 -left-4 group-hover:text-primary/10 transition-colors duration-500 select-none z-0">02</div>
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-headline font-bold mb-3 text-on-surface">Planning & UI/UX Foundations</h4>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">วางแผนระบบดีไซน์ โครงสร้างข้อมูล และสร้าง Wireframe เพื่อประสบการณ์ผู้ใช้ที่ดีที่สุด</p>
+                        </div>
+                        <div class="h-[2px] w-full bg-outline-variant/50 relative overflow-hidden rounded-full mt-auto">
+                            <div class="h-full w-0 bg-gradient-to-r from-primary to-tertiary group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative group px-4">
+                        <div class="text-[8rem] font-black text-outline-variant/50 absolute -top-16 -left-4 group-hover:text-primary/10 transition-colors duration-500 select-none z-0">03</div>
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-headline font-bold mb-3 text-on-surface">Design & Precision Build</h4>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">พัฒนาด้วยเทคโนโลยีที่ทันสมัย เข้ารหัสด้วยความแม่นยำ พร้อมการทดสอบที่เข้มงวด</p>
+                        </div>
+                        <div class="h-[2px] w-full bg-outline-variant/50 relative overflow-hidden rounded-full mt-auto">
+                            <div class="h-full w-0 bg-gradient-to-r from-primary to-tertiary group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative group px-4 md:mt-12">
+                        <div class="text-[8rem] font-black text-outline-variant/50 absolute -top-16 -left-4 group-hover:text-primary/10 transition-colors duration-500 select-none z-0">04</div>
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-headline font-bold mb-3 text-on-surface">Deployment & Support</h4>
+                            <p class="text-on-surface-variant text-sm leading-relaxed mb-6">ติดตั้งระบบขึ้นเซิร์ฟเวอร์จริง และดูแลบำรุงรักษาเพื่อประสิทธิภาพสูงสุดอย่างต่อเนื่อง</p>
+                        </div>
+                        <div class="h-[2px] w-full bg-outline-variant/50 relative overflow-hidden rounded-full mt-auto">
+                            <div class="h-full w-0 bg-gradient-to-r from-primary to-tertiary group-hover:w-full transition-all duration-700 ease-out"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-dim border-t border-outline-variant/10" id="pricing">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 md:mb-24">
+                    <span class="text-tertiary font-label uppercase tracking-[0.2em] text-sm mb-4 block font-semibold justify-center flex items-center gap-2">
+                        <span class="w-8 h-[1px] bg-tertiary block"></span> Packages <span class="w-8 h-[1px] bg-tertiary block"></span>
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface">แพ็กเกจ<span class="text-primary text-glow">การบริการ</span></h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                    <!-- Card 1: Starter -->
+                    <div class="bg-surface-bright border border-outline-variant/50 p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:-translate-y-2 transition-all duration-500 relative flex flex-col group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-primary/30 group-hover:bg-primary transition-colors duration-300"></div>
+                        <h3 class="text-2xl font-headline font-bold text-on-surface mb-1">Starter</h3>
+                        <p class="text-on-surface-variant text-sm mb-6">(Landing Page)</p>
+                        
+                        <div class="mb-8 pb-8 border-b border-outline-variant/30">
+                            <span class="text-sm font-medium text-on-surface-variant block mb-1">ราคาเริ่มต้น</span>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl md:text-5xl font-black text-primary">5,xxx</span>
+                                <span class="text-lg font-bold text-on-surface-variant">บาท</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 space-y-8">
+                            <div>
+                                <h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">เหมาะสำหรับ</h4>
+                                <ul class="space-y-4 text-sm text-on-surface">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> ร้านค้าเล็กๆ</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> หน้าขายสินค้า 1 หน้า</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> โชว์ผลงานบริษัท</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">จุดเด่น</h4>
+                                <ul class="space-y-4 text-sm text-on-surface">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> ดีไซน์สวย ทันสมัย</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> รองรับมือถือ 100%</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> เสร็จไวใน 3 วัน</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> แก้ไขงานได้ฟรี 3 ครั้ง (ก่อนส่งมอบ)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="mt-10 w-full block text-center bg-surface-container hover:bg-primary hover:text-on-primary-container text-on-surface font-bold py-4 rounded-xl transition-all duration-300 border border-outline-variant/30 active:scale-95">สนใจแพ็กเกจนี้</a>
+                    </div>
+
+                    <!-- Card 2: Business Tool -->
+                    <div class="bg-surface-bright border-2 border-primary/20 p-8 md:p-10 rounded-[2rem] shadow-xl hover:shadow-[0_20px_40px_rgba(0,113,227,0.1)] hover:-translate-y-2 transition-all duration-500 relative flex flex-col group lg:-translate-y-4 z-10">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-tertiary"></div>
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-tertiary text-on-primary-container text-xs font-bold px-5 py-1.5 rounded-full uppercase tracking-widest shadow-md whitespace-nowrap">แนะนำ</div>
+                        
+                        <h3 class="text-2xl font-headline font-bold text-on-surface mb-1 mt-2">Business Tool</h3>
+                        <p class="text-on-surface-variant text-sm mb-6">(ระบบหลังบ้าน)</p>
+                        
+                        <div class="mb-8 pb-8 border-b border-outline-variant/30">
+                            <span class="text-sm font-medium text-on-surface-variant block mb-1">ราคาเริ่มต้น</span>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl md:text-5xl font-black text-tertiary">1x,xxx</span>
+                                <span class="text-lg font-bold text-on-surface-variant">บาท</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 space-y-8">
+                            <div>
+                                <h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">เหมาะสำหรับ</h4>
+                                <ul class="space-y-4 text-sm text-on-surface">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> ระบบจัดการสต็อก / Lab</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> เว็บไซต์ธุรกิจ 3-5 หน้า</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> ระบบที่ต้องการฐานข้อมูล</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">จุดเด่น</h4>
+                                <ul class="space-y-4 text-sm text-on-surface">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> เชื่อมต่อ Firebase</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> จัดการข้อมูลแบบ Real-time</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> มีระบบ Login สมาชิก</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> แก้ไขงานได้ฟรี 5 ครั้ง (ก่อนส่งมอบ)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="mt-10 w-full block text-center bg-primary hover:bg-primary-fixed text-on-primary-container font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_5px_15px_rgba(0,113,227,0.2)] hover:shadow-[0_8px_20px_rgba(0,113,227,0.3)] active:scale-95">สนใจแพ็กเกจนี้</a>
+                    </div>
+
+                    <!-- Card 3: Custom Solution -->
+                    <div class="bg-surface-bright border border-outline-variant/50 p-8 md:p-10 rounded-[2rem] shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.04)] hover:-translate-y-2 transition-all duration-500 relative flex flex-col group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-secondary/30 group-hover:bg-secondary transition-colors duration-300"></div>
+                        <h3 class="text-2xl font-headline font-bold text-on-surface mb-1">Custom Solution</h3>
+                        <p class="text-on-surface-variant text-sm mb-6">(ระบบเต็มรูปแบบ)</p>
+                        
+                        <div class="mb-8 pb-8 border-b border-outline-variant/30">
+                            <span class="text-sm font-medium text-on-surface-variant block mb-1">ราคาเริ่มต้น</span>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-4xl md:text-5xl font-black text-secondary">2x,xxx</span>
+                                <span class="text-lg font-bold text-on-surface-variant">บาท</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex-1 space-y-8">
+                            <div>
+                                <h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">เหมาะสำหรับ</h4>
+                                <ul class="space-y-4 text-sm text-on-surface">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> ระบบลงทะเบียนอีเวนต์</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> ระบบจองคิวซับซ้อน</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check_circle</span> แพลตฟอร์มเฉพาะทาง</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">จุดเด่น</h4>
+                                <ul class="space-y-4 text-sm text-on-surface">
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> ออกแบบ Logic ใหม่ทั้งหมด</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> รองรับผู้ใช้งานจำนวนมาก</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> ระบบรายงานผลละเอียด</li>
+                                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-tertiary text-[20px] mt-0.5">star</span> แก้ไขงานได้ฟรี 10 ครั้ง (ก่อนส่งมอบ)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <a href="#contact" class="mt-10 w-full block text-center bg-surface-container hover:bg-primary hover:text-on-primary-container text-on-surface font-bold py-4 rounded-xl transition-all duration-300 border border-outline-variant/30 active:scale-95">สนใจแพ็กเกจนี้</a>
+                    </div>
+                </div>
+
+                <!-- Why Synthetix Extra Benefits -->
+                <div class="mt-20 max-w-6xl mx-auto">
+                    <div class="text-center mb-10">
+                        <h3 class="text-2xl md:text-3xl font-headline font-bold text-on-surface">ทำไมต้อง <span class="text-primary">Synthetix?</span></h3>
+                        <p class="text-on-surface-variant mt-2 font-medium">สิทธิพิเศษที่คุณจะได้รับ <span class="text-primary font-bold">ฟรี!</span> ในทุกแพ็กเกจ</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Extra 1 -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 p-6 bg-surface-bright rounded-2xl border border-outline-variant/50 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-2 sm:mb-0">
+                                <span class="material-symbols-outlined">forum</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-on-surface mb-2">ฟรีค่าปรึกษา</h4>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">ประหยัดต้นทุนด้วยคำปรึกษาที่ช่วยแนะนำและรวดเร็ว</p>
+                            </div>
+                        </div>
+
+                        <!-- Extra 2 -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 p-6 bg-surface-bright rounded-2xl border border-outline-variant/50 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary mb-2 sm:mb-0">
+                                <span class="material-symbols-outlined">verified_user</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-on-surface mb-2">ดูแลหลังการขาย 3 เดือน</h4>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">อุ่นใจ มีปัญหาแก้ไขให้ฟรี ไม่ทิ้งงาน</p>
+                            </div>
+                        </div>
+
+                        <!-- Extra 3 -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 p-6 bg-surface-bright rounded-2xl border border-outline-variant/50 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-12 h-12 shrink-0 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-2 sm:mb-0">
+                                <span class="material-symbols-outlined">school</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-on-surface mb-2">สอนใช้งานจนคล่อง</h4>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">ไม่ต้องมีความรู้ไอที เรามีคู่มือและสอนใช้ระบบจนคุณทำเองได้</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Text -->
+                <div class="mt-16 text-center">
+                    <p class="inline-flex flex-col sm:flex-row items-center justify-center gap-3 bg-primary-container/40 text-on-primary-container px-6 py-4 rounded-2xl text-sm font-medium border border-primary/20 mx-auto max-w-3xl">
+                        <span class="material-symbols-outlined text-[24px] text-primary">info</span>
+                        <span>ราคาปรับเปลี่ยนได้ตามฟีเจอร์ที่ต้องการ ยินดีให้คำปรึกษาฟรีเพื่อให้ได้ระบบที่คุ้มค่าที่สุดสำหรับงบประมาณของคุณ</span>
+                    </p>
+                </div>
+
+                <!-- Additional Costs -->
+                <div class="mt-20 max-w-5xl mx-auto">
+                    <div class="text-center mb-10">
+                        <h3 class="text-2xl md:text-3xl font-headline font-bold text-on-surface">ค่าบริการภายนอก <span class="text-secondary">(รายปี)</span></h3>
+                        <p class="text-on-surface-variant mt-2 text-sm md:text-base">ค่าใช้จ่ายคงที่สำหรับการรักษาเว็บไซต์ให้ออนไลน์ โดยลูกค้าชำระตามจริงกับผู้ให้บริการ</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Domain Card -->
+                        <div class="bg-surface-container-lowest border border-outline-variant/40 p-8 rounded-[2rem] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col items-center text-center group">
+                            <div class="w-16 h-16 rounded-full bg-secondary/5 flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary/10 group-hover:scale-110 transition-all duration-500">
+                                <span class="material-symbols-outlined text-3xl">language</span>
+                            </div>
+                            <h4 class="font-bold text-on-surface text-lg mb-2">ชื่อโดเมนเนม (.com / .net)</h4>
+                            <div class="flex items-baseline justify-center gap-1 mb-4">
+                                <span class="text-3xl font-black text-on-surface">~500 - 800</span>
+                                <span class="text-sm font-medium text-on-surface-variant">บาท / ปี</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant leading-relaxed px-2">เปรียบเสมือน <span class="font-semibold text-on-surface">"ป้ายชื่อร้าน"</span> สามารถให้เราช่วยดำเนินการจดในชื่อของคุณได้ (คุณเป็นเจ้าของ 100%)</p>
+                        </div>
+
+                        <!-- Cloud Hosting Card -->
+                        <div class="bg-surface-container-lowest border border-outline-variant/40 p-8 rounded-[2rem] shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col items-center text-center group">
+                            <div class="w-16 h-16 rounded-full bg-secondary/5 flex items-center justify-center text-secondary mb-6 group-hover:bg-secondary/10 group-hover:scale-110 transition-all duration-500">
+                                <span class="material-symbols-outlined text-3xl">cloud</span>
+                            </div>
+                            <h4 class="font-bold text-on-surface text-lg mb-2">พื้นที่ฝากไฟล์ (Cloud Hosting)</h4>
+                            <div class="flex items-baseline justify-center gap-1 mb-4">
+                                <span class="text-3xl font-black text-on-surface">ตามการใช้งานจริง</span>
+                            </div>
+                            <p class="text-sm text-on-surface-variant leading-relaxed px-2">เปรียบเสมือน <span class="font-semibold text-on-surface">"ค่าเช่าที่ดินร้านค้า"</span> สำหรับระบบขนาดเล็กสามารถเลือกจ่ายตามการใช้งานจริงได้ (Pay-as-you-go)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support & Maintenance -->
+                <div class="mt-8 max-w-5xl mx-auto bg-surface-container-high/40 border border-outline-variant/50 rounded-[2rem] p-8 md:p-12 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-primary/40"></div>
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+                                <h3 class="text-2xl font-headline font-bold text-on-surface">บริการดูแลรักษาหลังเปิดใช้งาน</h3>
+                            </div>
+                            <p class="text-on-surface-variant text-sm md:text-base">Support & Maintenance สำหรับลูกค้าที่ต้องการให้เราดูแลต่อเนื่องเพื่อความอุ่นใจ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Basic Care -->
+                        <div class="bg-surface-bright p-6 rounded-2xl border border-outline-variant/50 hover:shadow-md transition-shadow duration-300">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4 border-b border-outline-variant/30 pb-4 gap-2">
+                                <h4 class="font-bold text-on-surface text-lg">Basic Care</h4>
+                                <span class="bg-tertiary/10 text-tertiary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest w-max">ฟรี 3 เดือนแรก</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-on-surface-variant">
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-tertiary text-[18px] shrink-0 mt-0.5">check_circle</span> ตรวจสอบระบบเดือนละครั้ง</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-tertiary text-[18px] shrink-0 mt-0.5">check_circle</span> สำรองข้อมูล</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-tertiary text-[18px] shrink-0 mt-0.5">check_circle</span> แก้ไขบั๊กจากโค้ดเดิมฟรี</li>
+                            </ul>
+                        </div>
+
+                        <!-- Pro Care -->
+                        <div class="bg-primary/5 p-6 rounded-2xl border border-primary/20 hover:shadow-md transition-shadow duration-300 relative overflow-hidden">
+                            <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4 border-b border-primary/20 pb-4 gap-2">
+                                <h4 class="font-bold text-primary text-lg">Pro Care</h4>
+                                <span class="text-primary text-xs font-bold uppercase tracking-widest w-max">เริ่มต้น 3,xxx บาท/ปี</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-on-surface-variant">
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span> สแตนด์บายดูแลตลอดปี</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span> อัปเดตข้อมูลเล็กน้อยให้ฟรี (เช่น เปลี่ยนเบอร์โทร/รูปภาพ)</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">check_circle</span> ตรวจเช็คความปลอดภัยสม่ำเสมอ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-low border-t border-outline-variant/10 relative overflow-hidden" id="contact">
+            <!-- Background glow -->
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[120px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+                <div class="lg:col-span-5 flex flex-col justify-center">
+                    <span class="text-tertiary font-label uppercase tracking-[0.2em] text-sm mb-4 block font-semibold flex items-center gap-2">
+                        <span class="w-8 h-[1px] bg-tertiary block"></span> Get in touch
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-8">
+                        พร้อมจะ <span class="text-primary text-glow">สร้าง</span> หรือยัง?
+                    </h2>
+                    <p class="text-on-surface-variant mb-12 text-lg leading-relaxed">
+                        ติดต่อสถาปนิกดิจิทัลของเราเพื่อปรึกษาความต้องการโปรเจกต์ของคุณ และรับการประเมินราคาที่แม่นยำ
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-5 group">
+                            <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/20 transition-colors border border-outline-variant/20">
+                                <span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+                            </div>
+                            <div>
+                                <p class="text-sm text-on-surface-variant mb-1 uppercase tracking-widest text-xs">Email Us</p>
+                                <span class="font-bold text-on-surface text-lg group-hover:text-primary transition-colors">hello@synthetix.agency</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-5 group">
+                            <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary/20 transition-colors border border-outline-variant/20">
+                                <span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+                            </div>
+                            <div>
+                                <p class="text-sm text-on-surface-variant mb-1 uppercase tracking-widest text-xs">Our Office</p>
+                                <span class="font-bold text-on-surface leading-tight block">กรุงเทพฯ, ประเทศไทย <br/> ซานฟรานซิสโก, สหรัฐอเมริกา</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-7 bg-surface-container border border-outline-variant/50 p-8 md:p-12 rounded-3xl shadow-xl relative">
+                    <div class="flex flex-col justify-center items-center h-full space-y-6 relative z-10 text-center py-10">
+                        <h3 class="text-2xl md:text-3xl font-headline font-bold text-on-surface">สนใจเริ่มต้นโปรเจกต์กับเรา?</h3>
+                        <p class="text-on-surface-variant mb-6">ทักมาพูดคุย ปรึกษา หรือสอบถามรายละเอียดผ่านช่องทางที่คุณสะดวกได้เลยครับ</p>
+                        
+                        <div class="flex flex-col w-full max-w-md gap-4">
+                            <a href="https://lin.ee/yourlineid" target="_blank" rel="noopener noreferrer" class="w-full bg-[#00B900] hover:bg-[#009900] text-white p-4 rounded-xl font-bold text-[1rem] sm:text-lg hover:shadow-[0_0_20px_rgba(0,185,0,0.3)] transition-all duration-300 active:scale-[0.98] flex justify-center items-center gap-3">
+                                <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current shrink-0" xmlns="http://www.w3.org/2000/svg"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 3.969 8.856 9.49 9.605.372.083.865.258.988.599.113.313.073.801.034 1.129-.044.373-.207 1.258-.255 1.545-.059.351-.019.539.261.688.283.151.815.113 1.114-.047 1.353-.728 5.434-3.197 7.742-5.719 2.502-2.738 4.626-4.995 4.626-7.8z"/></svg>
+                                ทักสอบถาม/ประเมินราคาทาง LINE
+                            </a>
+                            
+                            <a href="mailto:hello@synthetix.agency" class="w-full bg-surface-dim hover:bg-primary hover:text-on-primary-container text-on-surface border border-outline-variant/20 p-4 rounded-xl font-bold text-[1rem] sm:text-lg hover:shadow-[0_0_20px_rgba(0,113,227,0.2)] transition-all duration-300 active:scale-[0.98] flex justify-center items-center gap-3">
+                                <span class="material-symbols-outlined shrink-0">mail</span>
+                                ส่งรายละเอียดโปรเจกต์ทาง Email
+                            </a>
+                        </div>
+                        
+                        <p class="text-xs md:text-sm text-on-surface-variant mt-4 font-medium flex items-center justify-center gap-2">
+                            <span class="inline-block w-2 h-2 rounded-full bg-[#00B900] animate-pulse"></span>
+                            ตอบกลับไวภายใน 24 ชม. ปรึกษาฟรีไม่มีค่าใช้จ่าย
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-dim border-t border-outline-variant/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 px-6 md:px-12 py-16 max-w-7xl mx-auto">
+            <div class="lg:col-span-1">
+                <a href="#" class="flex items-center gap-2 mb-6">
+                    <img src="https://kvdc-vetku.com/wp-content/uploads/2026/04/โลโก้-Synthetix-scaled.png" 
+                         alt="Synthetix Logo" 
+                         class="h-8 w-auto object-contain opacity-80">
+                    <span class="text-xl font-black text-on-surface font-headline tracking-tight">Synthetix</span>
+                </a>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                    ออกแบบมาเพื่อความแม่นยำ สร้างสรรค์ความเป็นเลิศทางดิจิทัลยุคหน้า
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-on-surface font-bold mb-6 font-headline tracking-wide uppercase text-sm">บริการของเรา</h4>
+                <ul class="space-y-4">
+                    <li><a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-sm flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> ออกแบบเว็บไซต์</a></li>
+                    <li><a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-sm flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> พัฒนาโมบายล์แอป</a></li>
+                    <li><a class="text-on-surface-variant hover:text-primary transition-colors duration-200 text-sm flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> สถาปัตยกรรม UI/UX</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-on-surface font-bold mb-6 font-headline tracking-wide uppercase text-sm">บริษัท</h4>
+                <ul class="space-y-4">
+                    <li><a class="text-on-surface-variant hover:text-tertiary transition-colors duration-200 text-sm flex items-center gap-2" href="#about"><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> เกี่ยวกับเรา</a></li>
+                    <li><a class="text-on-surface-variant hover:text-tertiary transition-colors duration-200 text-sm flex items-center gap-2" href="#portfolio"><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> ผลงาน</a></li>
+                    <li><a class="text-on-surface-variant hover:text-tertiary transition-colors duration-200 text-sm flex items-center gap-2" href="#process"><span class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> ขั้นตอนการทำงาน</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-on-surface font-bold mb-6 font-headline tracking-wide uppercase text-sm">เชื่อมต่อกับเรา</h4>
+                <div class="flex gap-4 mb-8">
+                    <a href="#" class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant/20 flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary-container hover:border-primary transition-all duration-300">
+                        <span class="material-symbols-outlined text-[20px]" data-icon="public">public</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant/20 flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary-container hover:border-primary transition-all duration-300">
+                        <span class="material-symbols-outlined text-[20px]" data-icon="link">link</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-surface-container border border-outline-variant/20 flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-on-primary-container hover:border-primary transition-all duration-300">
+                        <span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-outline-variant/10 px-6 py-6 text-center">
+            <span class="text-xs text-on-surface-variant/50 font-body uppercase tracking-widest block">© 2024 Synthetix Agency. Engineered for Precision.</span>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-surface-container-highest border border-primary/20 px-6 py-4 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 z-[100] translate-y-4">
+        <span class="material-symbols-outlined text-primary text-2xl" data-icon="check_circle">check_circle</span>
+        <span class="text-on-surface font-bold text-sm tracking-wide">ส่งข้อมูลเรียบร้อย เราจะติดต่อกลับโดยเร็วที่สุด!</span>
+    </div>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Logic ---
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = document.getElementById('menu-icon');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                    mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                    menuIcon.textContent = 'close';
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                } else {
+                    mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                    mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                    menuIcon.textContent = 'menu';
+                    document.body.style.overflow = ''; // Restore scrolling
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMenuOpen) toggleMenu();
+                });
+            });
+
+            // --- Navbar Scroll Effect ---
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-[0_10px_30px_rgba(0,0,0,0.5)]', 'py-3');
+                    navbar.classList.remove('py-4');
+                } else {
+                    navbar.classList.remove('shadow-[0_10px_30px_rgba(0,0,0,0.5)]', 'py-3');
+                    navbar.classList.add('py-4');
+                }
+            });
+
+            // --- Form Submission & Toast ---
+            const form = document.getElementById('contact-form');
+            const toast = document.getElementById('toast');
+            let toastTimeout;
+
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Prevent actual submission
+
+                    // Show toast
+                    toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                    toast.classList.add('opacity-100', 'translate-y-0');
+
+                    // Clear form
+                    form.reset();
+
+                    // Hide toast after 4 seconds
+                    clearTimeout(toastTimeout);
+                    toastTimeout = setTimeout(() => {
+                        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                        toast.classList.remove('opacity-100', 'translate-y-0');
+                    }, 4000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
